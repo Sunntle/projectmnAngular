@@ -1,0 +1,119 @@
+{
+  "DuAn": [
+    {
+      "id": 1,
+      "tenDuAn": "Quản lý trại heo",
+      "ngayStart": "2022-03-01",
+      "tien": 67000000,
+      "leader": 1,
+      "thanhvien": [
+        1,
+        3,
+        4
+      ]
+    },
+    {
+      "id": 2,
+      "tenDuAn": "Cây xanh công viên",
+      "ngayStart": "2022-04-02",
+      "tien": 98500000,
+      "leader": 1,
+      "thanhvien": [
+        1,
+        3,
+        4
+      ]
+    },
+    {
+      "id": 3,
+      "tenDuAn": "Du an thien nguyen",
+      "ngayStart": "2222-02-22",
+      "tien": "200000",
+      "leader": 2,
+      "thanhvien": [
+        1,
+        4
+      ]
+    }
+  ],
+  "NhanVien": [
+    {
+      "id": 1,
+      "ho": "Nguyễn Bá",
+      "ten": "Đạo",
+      "ngaysinh": "2001-01-03",
+      "phai": true,
+      "khuvuc": "Bắc"
+    },
+    {
+      "id": 2,
+      "ho": "Phạm Kỷ",
+      "ten": "Luật",
+      "ngaysinh": "2001-05-06",
+      "phai": true,
+      "khuvuc": "Trung"
+    },
+    {
+      "id": 3,
+      "ho": "Mai Thanh",
+      "ten": "Toán",
+      "ngaysinh": "2001-06-15",
+      "phai": false,
+      "khuvuc": "Bắc"
+    },
+    {
+      "id": 4,
+      "ho": "Bùi Văn",
+      "ten": "Chí",
+      "ngaysinh": "1991-06-15",
+      "phai": false,
+      "khuvuc": "Nam"
+    },
+    {
+      "id": 5,
+      "ho": "Nguyễn Văn",
+      "ten": "A",
+      "ngaysinh": "2023-05-02",
+      "phai": false,
+      "khuvuc": "Nam"
+    }
+  ],
+  "Task": [
+    {
+      "id": 1,
+      "tenTask": "Phân tích yêu cầu",
+      "duAnID": 1,
+      "nhanvienID": 2,
+      "moTa": "Phân tích yêu cầu 2....",
+      "status": 1,
+      "priority": 1
+    },
+    {
+      "id": 3,
+      "tenTask": "Tìm hiểu yêu cầu khách hàng",
+      "duAnID": 2,
+      "nhanvienID": 3,
+      "moTa": "Tìm hiểu yêu cầu khách hàng...",
+      "status": 1,
+      "priority": 2
+    },
+    {
+      "tenTask": "Lấy ý kiến khách hàng",
+      "moTa": "ý kiến khách hàng....",
+      "duAnID": 3,
+      "nhanvienID": 1,
+      "status": 0,
+      "priority": "2",
+      "id": 4
+    },
+    {
+      "tenTask": "Tham khảo thị trướng",
+      "moTa": "Tham khảo thị trướng",
+      "duAnID": 3,
+      "nhanvienID": 3,
+      "status": 0,
+      "priority": "2",
+      "id": 5
+    }
+  ]
+}

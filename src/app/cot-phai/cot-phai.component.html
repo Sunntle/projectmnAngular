@@ -1,0 +1,35 @@
+<div class="container-fluid">
+  <div class="header text-center">
+    <h4 class="bg-primary p-2 text-white rounded text-uppercase">
+      Thành viên của team
+    </h4>
+  </div>
+  <div class="accordion" id="accordionExample">
+    <div class="accordion-item" *ngFor="let kv of khuVuc | keyvalue">
+      <h2 class="accordion-header" id="headingOne">
+        <button
+          class="accordion-button collapsed"
+          type="button"
+          data-bs-toggle="collapse"
+          [attr.data-bs-target]="'#collapse' + kv.key"
+          aria-expanded="true"
+          [attr.aria-controls]="'collapse' + kv.key"
+        >
+          {{ kv.key }}
+        </button>
+      </h2>
+      <div
+        id="collapse{{ kv.key }}"
+        class="accordion-collapse collapse"
+        aria-labelledby="headingOne"
+        data-bs-parent="#accordionExample"
+      >
+        <div class="accordion-body">
+          <p class="my-2" *ngFor="let nv of getNV(kv.key)">
+            {{ nv.ho }} {{ nv.ten }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

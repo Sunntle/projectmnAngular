@@ -1,0 +1,162 @@
+<h4 class="bg-warning mt-3 p-2 text-uppercase text-center">DANH SÁCH TASK</h4>
+<div *ngFor="let task of listTask" class="mb-3">
+  <div>
+    <b class="fs-5">{{ task.tenTask }} </b><br />
+    {{ task.moTa }}
+  </div>
+  <div class="mb-3 border-bottom row">
+    <div class="col-6">
+      Mức độ ưu tiên: <b>{{ task.priority == 1 ? "Bình thường" : "Gấp" }}</b
+      ><br />
+      Trạng thái: <b>{{ task.status == 0 ? "Đang xử lí" : "Hoàn thành" }}</b>
+    </div>
+    <div class="col-6">
+      <button
+        type="button"
+        class="btn btn-primary"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+        (click)="getData(task.id)"
+      >
+        Sửa
+      </button>
+      <button
+        type="button"
+        class="btn btn-{{ task.id }} {{
+          task.status == 0 ? 'btn-success' : 'btn-danger'
+        }}"
+        (click)="success(task.id)"
+      >
+        {{ task.status == 0 ? "Hoàn thành" : "Xóa" }}
+      </button>
+    </div>
+  </div>
+</div>
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <form action="" [formGroup]="frm1" (ngSubmit)="postData(frm1.value)">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5 text-uppercase" id="exampleModalLabel">
+            Thông tin nhân viên
+          </h1>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-6 py-2">ID</div>
+            <div class="col-6 py-2">
+              <input
+                class="px-1 border-top-0 border-start-0 border-end-0"
+                type="text"
+                formControlName="id"
+              />
+            </div>
+            <div class="col-6 py-2">Tên task</div>
+            <div class="col-6 py-2">
+              <input
+                class="px-1 border-top-0 border-start-0 border-end-0"
+                type="text"
+                formControlName="tenTask"
+              />
+            </div>
+            <div class="col-6 py-2">Dự án</div>
+            <div class="col-6 py-2">
+              <select
+                formControlName="duAnID"
+                name=""
+                id=""
+                class="px-1 border-top-0 border-start-0 border-end-0"
+              >
+                <option
+                  *ngFor="let da of listDa"
+                  [selected]="da.id === frm1.controls['duAnID'].value"
+                  [ngValue]="da.id"
+                >
+                  {{ da.tenDuAn }}
+                </option>
+              </select>
+            </div>
+            <div class="col-6 py-2">Nhân viên</div>
+            <div class="col-6 py-2">
+              <select
+                formControlName="nhanvienID"
+                name=""
+                id=""
+                class="px-1 border-top-0 border-start-0 border-end-0"
+              >
+                <option
+                  *ngFor="let nv of listNv"
+                  [selected]="nv.id === frm1.controls['nhanvienID'].value"
+                  [ngValue]="nv.id"
+                >
+                  {{ nv.ho + " " + nv.ten }}
+                </option>
+              </select>
+            </div>
+            <div class="form-floating">
+              <textarea
+                class="form-control"
+                placeholder="Leave a comment here"
+                id="floatingTextarea2"
+                style="height: 100px"
+                formControlName="moTa"
+              ></textarea>
+              <label for="floatingTextarea2">Mô tả</label>
+            </div>
+            <div class="col-6 py-2">Độ ưu tiên</div>
+            <div class="col-6 py-2">
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  name="priority"
+                  id="inlineRadio1"
+                  formControlName="priority"
+                  [checked]="frm1.controls['priority'].value === 1"
+                  [value]="1"
+                />
+                <label class="form-check-label" for="inlineRadio1"
+                  >Bình thường</label
+                >
+              </div>
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  type="radio"
+                  id="inlineRadio2"
+                  name="priority"
+                  formControlName="priority"
+                  [checked]="frm1.controls['priority'].value === 2"
+                  [value]="2"
+                />
+                <label class="form-check-label" for="inlineRadio2">Gấp</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >
+            Close
+          </button>
+          <button type="submit" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

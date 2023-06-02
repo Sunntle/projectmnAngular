@@ -1,1 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
+a{
+    text-decoration: none;
+}
+button ~ button{
+    margin-left: 5px;
+}
+input{
+    caret-color:rgb(13,110,253);
+    border-color: #adabab4e;
+}

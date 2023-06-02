@@ -1,0 +1,173 @@
+<div>
+  <h3 class="bg-primary rounded text-uppercase text-center p-2 text-white">
+    DANH SÁCH DỰ ÁN
+  </h3>
+  <div class="d-flex align-items-center" style="gap: 10px">
+    <label>Lọc theo: </label>
+    <select
+      style="flex: 1"
+      (change)="getValueSort($event)"
+      class="form-select"
+      aria-label="Default select example"
+    >
+      <option value="0" selected>Theo ID dự án</option>
+      <option value="1">Theo ngày từ thấp đến cao</option>
+      <option value="2">Theo ngày từ cao đến thấp</option>
+      <option value="3">Theo chi phí từ thấp đến cao</option>
+      <option value="4">Theo chi phí từ cao đến thấp</option>
+    </select>
+  </div>
+  <table class="table text-center">
+    <thead>
+      <tr>
+        <th>id</th>
+        <th>Tên dự án</th>
+        <th>Ngày start</th>
+        <th>Tiền</th>
+        <th>Trạng thái</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let da of listDuAn">
+        <td class="align-middle">{{ da.id }}</td>
+        <td class="align-middle">
+          <a href="#" routerLink="/chitietduan/{{ da.id }}">{{ da.tenDuAn }}</a>
+        </td>
+        <td class="align-middle">{{ da.ngayStart | date : "dd/MM/YYYY" }}</td>
+        <td class="align-middle">
+          {{ da.tien | currency : "VND" : "symbol" : "4.0-2" : "fr" }}
+        </td>
+        <td class="align-middle">
+          <button
+            type="button"
+            class="btn btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#exampleModal"
+            (click)="getData(da.id)"
+          >
+            Sửa
+          </button>
+          <button
+            type="button"
+            class="btn btn-danger"
+            (click)="deleteData(da.id)"
+          >
+            Xóa
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <form action="" [formGroup]="frm1" (ngSubmit)="postData(frm1.value)">
+      <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5 text-uppercase" id="exampleModalLabel">
+              Thông tin dự án
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-6 py-2">ID</div>
+              <div class="col-6 py-2">
+                <input
+                  class="px-1 border-top-0 border-start-0 border-end-0"
+                  type="text"
+                  formControlName="id"
+                />
+              </div>
+              <div class="col-6 py-2">Tên dự án</div>
+              <div class="col-6 py-2">
+                <input
+                  class="px-1 border-top-0 border-start-0 border-end-0"
+                  type="text"
+                  formControlName="tenDuAn"
+                />
+              </div>
+              <div class="col-6 py-2">Ngày bắt đầu</div>
+              <div class="col-6 py-2">
+                <input
+                  class="px-1 border-top-0 border-start-0 border-end-0"
+                  type="date"
+                  formControlName="ngayStart"
+                />
+              </div>
+              <div class="col-6 py-2">Chi phí</div>
+              <div class="col-6 py-2">
+                <input
+                  class="px-1 border-top-0 border-start-0 border-end-0"
+                  type="text"
+                  formControlName="tien"
+                />
+              </div>
+              <div class="col-6 py-2">Leader ID</div>
+              <div class="col-6 py-2">
+                <select
+                  formControlName="leader"
+                  name=""
+                  id=""
+                  class="px-1 border-top-0 border-start-0 border-end-0"
+                >
+                  <option
+                    *ngFor="let nv of listNv"
+                    [selected]="
+                      nv.id == frm1.controls['leader'].value ? true : null
+                    "
+                    [ngValue]="nv.id"
+                  >
+                    {{ nv.ho + " " + nv.ten }}
+                  </option>
+                </select>
+              </div>
+              <div class="col-6 py-2">Thành viên ID</div>
+              <div class="col-6 py-2">
+                <select
+                  formControlName="thanhvien"
+                  name=""
+                  id=""
+                  class="px-1 border-0"
+                  multiple
+                  size="5"
+                >
+                  <option
+                    *ngFor="let nv of listNv"
+                    [selected]="
+                      nv.id == frm1.controls['thanhvien'].value ? true : null
+                    "
+                    [ngValue]="nv.id"
+                  >
+                    {{ nv.ho + " " + nv.ten }}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="submit" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<script></script>

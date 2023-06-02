@@ -1,0 +1,53 @@
+<div class="container-fluid">
+    <div class="header text-center">
+      <h4 class="bg-primary p-2 text-white rounded">TRƯỞNG NHÓM</h4> 
+     <img class="img-fluid avt" src="../assets/avt.jpg" alt="222" >
+    <h3 class="text-uppercase my-3">Team Poly</h3>
+    </div>
+    <div>
+      <h4 class="text-center">Tóm tắt về team</h4>
+      <div class="bg-light rounded">
+        <table class="table">
+          <tbody>
+            <tr>
+              <td class="align-middle">SỐ LƯỢNG THÀNH VIÊN</td>
+              <td class="text-center"><b>{{soLuongNV}}</b></td>
+            </tr>
+            <tr>
+              <td class="align-middle">TỔNG CHI PHÍ CỦA TẤT CẢ CÁC DỰ ÁN</td>
+              <td class="text-center"><b>{{tongTien/1000000 | currency:"M":"code":".0-3":"fr"}}</b></td>
+            </tr>
+            <tr>
+              <td class="align-middle">CÁC TASK ĐANG XỬ LÝ</td>
+              <td class="text-center"><b>{{soLuongTask}}</b></td>
+            </tr>
+            <tr>
+              <td class="align-middle">DỰ ÁN SẮP TRIỂN KHAI</td>
+              <td class="text-center"><b>20%</b></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div>
+      <h4 class="text-center">Khách hàng</h4>
+      <div class="bg-light rounded">
+        <table class="table">
+          <tbody>
+            <tr>
+              <td class="align-middle">Nguyen Van A</td>
+            </tr>
+            <tr>
+              <td class="align-middle">Bui Van C</td>
+            </tr>
+            <tr>
+              <td class="align-middle">Tran Kim B</td>
+            </tr>
+            <tr>
+              <td class="align-middle">Quach Do Tan E</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>

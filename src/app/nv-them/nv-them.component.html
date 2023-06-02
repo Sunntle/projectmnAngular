@@ -1,0 +1,75 @@
+<form class="mt-3" [formGroup]="frm1" (ngSubmit)="createNv(frm1.value)">
+  <h5 class="bg-warning p-2">THÊM NHÂN VIÊN</h5>
+  <p class="mb-3">
+    Họ <input class="form-control" formControlName="ho" />
+    <ng-container *ngTemplateOutlet="errorTemplate; context: { name: 'ho' }">
+    </ng-container>
+  </p>
+  <p class="mb-3">
+    Tên
+    <input type="text" class="form-control" formControlName="ten" />
+    <ng-container *ngTemplateOutlet="errorTemplate; context: { name: 'ten' }">
+    </ng-container>
+  </p>
+  <p class="mb-3">
+    Ngày sinh
+    <input class="form-control" type="date" formControlName="ngaysinh" />
+
+    <ng-container
+      *ngTemplateOutlet="errorTemplate; context: { name: 'ngaysinh' }"
+    >
+    </ng-container>
+  </p>
+
+  <div class="mb-3">
+    Giới tính:
+    <div class="form-check form-check-inline">
+      <input
+        class="form-check-input"
+        type="radio"
+        name="phai"
+        id="inlineRadio1"
+        formControlName="phai"
+        [checked]="frm1.controls['phai'].value === true"
+        [value]="true"
+      />
+      <label class="form-check-label" for="inlineRadio1">Nam</label>
+    </div>
+    <div class="form-check form-check-inline">
+      <input
+        class="form-check-input"
+        type="radio"
+        id="inlineRadio2"
+        name="phai"
+        formControlName="phai"
+        [checked]="frm1.controls['phai'].value === false"
+        [value]="false"
+      />
+      <label class="form-check-label" for="inlineRadio2">Nữ</label>
+    </div>
+  </div>
+  <div class="mb-3">
+    Khu vực
+    <select
+      formControlName="khuvuc"
+      name=""
+      id=""
+      class="px-1 border-top-0 border-start-0 border-end-0"
+    >
+      <option value="" selected disabled hidden>Chọn khu vực</option>
+      <option *ngFor="let state of states | keyvalue" [ngValue]="state.key">
+        {{ state.key }}
+      </option>
+    </select>
+  </div>
+  <p>
+    <button type="submit" class="btn btn-primary p-2" [disabled]="!frm1.valid">
+      Thêm nhân viên
+    </button>
+  </p>
+</form>
+<ng-template #errorTemplate let-l="name">
+  <em *ngIf="frm1.controls[l]?.errors" class="text-danger">
+    <span>Trường này bắt buộc phải điền</span>
+  </em>
+</ng-template>

@@ -1,0 +1,67 @@
+<form class="mt-3" [formGroup]="frm1" (ngSubmit)="createTask(frm1.value)">
+  <h5 class="bg-warning p-2">THÊM TASK</h5>
+  <p class="mb-3">
+    Tên task <input class="form-control" formControlName="tenTask" />
+
+    <ng-container
+      *ngTemplateOutlet="errorTemplate; context: { name: 'tenTask' }"
+    >
+    </ng-container>
+  </p>
+  <p class="mb-3">
+    Mô tả <textarea class="form-control" formControlName="moTa"></textarea>
+
+    <ng-container *ngTemplateOutlet="errorTemplate; context: { name: 'moTa' }">
+    </ng-container>
+  </p>
+  <p class="mb-3">
+    Dự án
+    <select class="form-control" formControlName="duAnID">
+      <option *ngFor="let da of listDA" [ngValue]="da.id">
+        {{ da.tenDuAn }}
+      </option>
+    </select>
+
+    <ng-container
+      *ngTemplateOutlet="errorTemplate; context: { name: 'duAnID' }"
+    >
+    </ng-container>
+  </p>
+  <p class="mb-3">
+    Người thực hiện
+    <select class="form-control" formControlName="nhanvienID">
+      <option *ngFor="let nv of listNV" [ngValue]="nv.id">
+        {{ nv.ho }} {{ nv.ten }}
+      </option>
+    </select>
+
+    <ng-container
+      *ngTemplateOutlet="errorTemplate; context: { name: 'nhanvienID' }"
+    >
+    </ng-container>
+  </p>
+  <p class="mb-3">
+    Độ ưu tiên
+    <select class="form-control" formControlName="priority">
+      <option value="1" selected>Bình thường</option>
+      <option value="2">Gấp</option>
+    </select>
+  </p>
+  <p class="mb-3">
+    Trạng thái
+    <select class="form-control" formControlName="status">
+      <option value="0" selected>Đang xử lí</option>
+      <option value="1">Hoàn thành</option>
+    </select>
+  </p>
+  <p>
+    <button class="btn btn-primary p-2" [disabled]="!frm1.valid">
+      Thêm Task
+    </button>
+  </p>
+</form>
+<ng-template #errorTemplate let-l="name">
+  <em *ngIf="frm1.controls[l]?.errors" class="text-danger">
+    <span>Trường này bắt buộc phải điền</span>
+  </em>
+</ng-template>
